@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <img src="../../assets/heading-2.png" alt="" id="logo">
+        </div>
+        <div class="col-10">
+            <nav class="navbar navbar-expand-lg navbar-light bg-info">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active mx-5">
+                      <a class="nav-link mt-2" href="#"><strong>Home</strong></a>
+                    </li>
+                    <li class="nav-item mx-5 mt-2">
+                      <a class="nav-link" (click)="onClickQuiz()"><strong>Quiz</strong></a>
+                    </li>
+                    <li class="nav-item mx-5 mt-2">
+                      <p class="nav-link"  (click)="onClickCourse()"><strong>Course</strong></p>
+                    </li>
+                    <li *ngIf="isLogout" class="nav-item mx-5 mt-2">
+                        <p class="nav-link"  (click)="onClickMenu()"><strong>Dashboard</strong></p>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+        </div>
+    </div>
+  </div>

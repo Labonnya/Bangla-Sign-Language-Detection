@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <img src="../../assets/sign_girl.gif" alt="girl">
+    </div>
+    <div class="col-6">
+      <div class="container box">
+        <h2 class="text-center">OTP Verification </h2> <br>
+        <form>
+          <div class="form-group">
+            <label>OTP Verification Code:</label>
+            <input type="text" class="form-control" name="submitted_otp" [(ngModel)]="submitted_otp">
+          </div>
+          <div *ngIf="FORGOT_PASSWORD_PROCESS==true" class="form-group">
+            <label>Set new Password:</label>
+            <input type="text" class="form-control" name="new_password" [(ngModel)]="new_password">
+          </div>
+        </form>
+        <button class='btn-reg' (click)="verifySubmittedOTP()">Submit</button> 
+        <br><br>
+        <div class=" alert mb-3 alert-danger text-center" role="alert" *ngIf="showError">
+      
+          Wrong credentials!! Please try again!
+        
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <img src="../../assets/Light Grey Simple Illustrated International Day Of Sign Language Instagram Story.gif" alt="girl">
+    </div>
+  </div>
+</div>

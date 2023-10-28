@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="container question" *ngFor="let question of questions; let i = index">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>{{i+1}}. {{ question.label }}</h4>
+      </li>
+      <li class="list-group-item pt-3">
+        <input type="radio" name="{{ question.label }}" value="{{ question.choice1 }}" [(ngModel)]="selectedChoice[i]">
+        <img [src]="question.choice1" height="100px" width="100px" class="mx-5"><br>
+      </li>
+      <li class="list-group-item">
+        <input type="radio" name="{{ question.label }}" value="{{ question.choice2 }}" [(ngModel)]="selectedChoice[i]">
+        <img [src]="question.choice2" height="100px" width="100px" class="mx-5"><br>
+      </li>
+      <li class="list-group-item">
+        <input type="radio" name="{{ question.label }}" value="{{ question.choice3 }}" [(ngModel)]="selectedChoice[i]">
+        <img [src]="question.choice2" height="100px" width="100px" class="mx-5"><br>
+      </li>
+      <li class="list-group-item">
+        <input type="radio" name="{{ question.label }}" value="{{ question.choice4 }}" [(ngModel)]="selectedChoice[i]">
+        <img [src]="question.choice2" height="100px" width="100px" class="mx-5"><br><br>
+      </li>
+    </ul>
+    <br><br>
+  </div>
+  <button class="btn-menu submit-quiz mb-5" (click)="checkAnswer()">Submit</button>
+</div>

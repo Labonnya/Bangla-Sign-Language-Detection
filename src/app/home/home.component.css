@@ -1,0 +1,30 @@
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  h1, h3 {
+    color: #9A1750;
+  }
+  
+img{
+    width: 600px;
+    height: 753px;
+    margin-left: 28px;
+}
+
+#head {
+    width: 200px;
+    height: auto;
+}
+
+.startsub {
+    color: #A6A2A2;
+}
+
+.typing {
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px;
+}

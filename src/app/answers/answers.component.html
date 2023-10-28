@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 class="text-center my-4"> You've got {{ score }} points.</h2>
+  <h4 class="text-center mb-3">Here are the correct answers:</h4>
+</div>
+<div class="container answer" *ngFor="let question of randomQuestions; let i = index">
+  <ul class="list-group">
+    <li class="list-group-item bg-light">
+      <h5 class="pb-3">{{i+1}}. {{ question.label }}</h5>
+      <img [src]="question.answer" height="100px" width="100px"><br>   
+    </li>
+  </ul>
+</div>

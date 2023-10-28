@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 alert mb-3" role="alert">
+      This is the dashboard for teachers where a teacher can make course with course title, description and video and edit the course and upload videos later on. A teacher can also delete a course by viewing the courses and see the user profile on user dashboard.    
+    </div>
+    <div class="col-3"></div>
+  </div>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 text-center my-5">
+      <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Show Teacher Dashboard</button>
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Teacher Dashboard</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <app-profile></app-profile>
+        </div>
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+    <div class="row ml-5">
+        <div class="col-4">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0 text-center">
+                      <button class="btn btn-link btn-icon" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Make Course<br>
+                        <fa-icon [icon]="['fas', 'plus-square']" class="icon"></fa-icon>
+                        </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <app-form></app-form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0 text-center">
+                      <button class="btn btn-link btn-icon collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Edit Course<br>
+                        <fa-icon [icon]="['fas', 'edit']" class="icon"></fa-icon>
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <app-edit-form></app-edit-form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-4">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingThree" >
+                    <h2 class="mb-0 text-center">
+                      <button class="btn btn-link btn-icon collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" (click)="onClickView()">
+                        View Course<br>
+                        <fa-icon [icon]="['fas', 'list-check']" class="icon"></fa-icon>
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+  

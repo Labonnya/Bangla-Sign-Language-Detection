@@ -1,0 +1,60 @@
+<style>
+    .box{
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 100px;
+      width: 300px;
+      height: 300px;
+      
+    }
+
+    .myRow{
+      text-transform: uppercase;
+    }
+
+    .btn-reg {
+  
+  background: #9a1750;
+  background-image: -webkit-linear-gradient(top, #9a1750, #ee4c7c);
+  background-image: -moz-linear-gradient(top, #9a1750, #ee4c7c);
+  background-image: -ms-linear-gradient(top, #9a1750, #ee4c7c);
+  background-image: -o-linear-gradient(top, #9a1750, #ee4c7c);
+  background-image: linear-gradient(to bottom, #9a1750, #ee4c7c);
+text-transform: uppercase;
+ border: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 8px 16px 8px 16px;
+  text-decoration: none;
+  margin-left: 80px;
+}
+
+.btn-reg:hover {
+  background: #d42a7a;
+  background-image: -webkit-linear-gradient(top, #d42a7a, #c9164f);
+  background-image: -moz-linear-gradient(top, #d42a7a, #c9164f);
+  background-image: -ms-linear-gradient(top, #d42a7a, #c9164f);
+  background-image: -o-linear-gradient(top, #d42a7a, #c9164f);
+  background-image: linear-gradient(to bottom, #d42a7a, #c9164f);
+  cursor: pointer;
+}
+
+</style>
+<div class="container">
+  <img src="../../assets/save.png" alt="user" id="user-img">
+</div>
+<div class="container box">
+<div class="row">
+    <div class="col-sm-7">        
+        <br><br>       
+        <div class='myRow'><b>Name:</b> <br><span>{{username}}</span></div>
+        <div class='myRow'><b>Role:</b> <br><span>{{role}}</span></div>
+        <div class='myRow'><b>Email:</b> <br><span>{{email}}</span></div>
+        <div class='myRow'><b>Institution Name:</b> <br><span>{{institution}}</span></div>
+        </div>
+</div>
+<br><br>
+</div>
+
+<div class="container">
+  <button class="btn-reg logout" id="'btntcr" (click)="logout()"> Logout </button>
+</div>

@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<style>
+  .login-box {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 20px;
+    width: 300px;
+    margin-left: 140px;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <img src="../../assets/sign_girl.gif" alt="girl">
+    </div>
+    <div class="col-6">
+      <div class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3">
+
+        <div class="login-box">
+        
+        <h2 class="text-center">Login</h2>
+        
+        <p class="text-center">Login to start teaching & learning everyday! Login credentials can be changed anytime after login.</p>
+        
+        <form>
+        
+          <div class="form-group">
+            <label for="username">Name:</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="username" id="username">
+          </div>
+        
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="password" id="password">
+          </div>
+        
+          <button class="btn-reg" (click)="authenticate()">Submit</button> 
+          <br>
+        
+          <div class="text-center">
+            <br>
+            <a [routerLink]="['/register']" class="linktag">New User? Create an Account!</a> <br>
+            <a [routerLink]="['/forgot-password']" class="linktag">Forgot Password?</a>
+          </div>
+        
+        </form>
+        <br>
+        
+        <div class=" alert mb-3 alert-danger text-center" role="alert" *ngIf="showError">
+        
+          Wrong credentials!! Please try again!
+        
+        </div>
+        
+        </div>
+    </div>
+  </div>
+    <div class="col-3">
+      <img src="../../assets/Light Grey Simple Illustrated International Day Of Sign Language Instagram Story.gif" alt="girl">
+    </div>
+</div>
+</div>
+
