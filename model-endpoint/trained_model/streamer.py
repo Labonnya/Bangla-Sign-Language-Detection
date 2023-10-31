@@ -1,13 +1,48 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
 import cv2
-from sign_recognition import *
 import threading
+from cvzone.ClassificationModule import Classifier
+
 
 app = FastAPI()
 frame_skip = 10
 camera = cv2.VideoCapture("http://192.168.0.100:4747/video")  # You can specify your camera index or video source
-handDetector = HandDetector()
+VIDEO_STREAM_LINK = 'http://192.168.0.100:4747/video'
+classifier = Classifier("keras_model.h5", "labels.txt")
+CLASSES = [
+    "Chandra Bindu",
+    "Anusshar",
+    "Bisharga",
+    "Ka",
+    "Kha",
+    "Ga",
+    "Gha",
+    "Uo",
+    "Ca",
+    "Cha",
+    "Jha",
+    "Yo",
+    "Ta",
+    "Thha",
+    "Do",
+    "Dho",
+    "Tha",
+    "Da",
+    "Dha",
+    "Pa",
+    "fa",
+    "Ma",
+    "La",
+    "Ha",
+    "Borgio Ja/Anta Ja",
+    "Murdha Na/Donta Na",
+    "Ta/Khanda Ta",
+    "Ba/Bha",
+    "Ba-y Ra/Da-y Ra/Dha-y Ra",
+    "Talobbo sha/Danta sa/Murdha Sha"
+]
+
 
 def generate_frames():
     frame_number = 0
@@ -22,7 +57,8 @@ def generate_frames():
 
         if frame_number % frame_skip == 0:
             prediction, index = classifier.getPrediction(frame)
-        cv2.putText(frame, f"{CLASSES[index]}, {prediction[index]}", (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255), 1)
+        else: 
+            cv2.putText(frame, f"{CLASSES[index]}, {prediction[index]}", (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255), 1)
         #cv2.rectangle(frame, (x,y), (x+w, y+h), (255,0,255), 2)
 
         ret, buffer = cv2.imencode('.jpg', frame)
