@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { AnswersComponent } from './answers/answers.component';
+import { LiveModelComponent } from './live-model/live-model.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path: "forgot-password", component: ForgotPasswordComponent},
   {path: "teacher-dashboard", component: TeacherDashboardComponent},
   {path: "quiz", component: QuestionsComponent},
-  {path: "answers", component: AnswersComponent}
+  {path: "answers", component: AnswersComponent},
+  {path: "model", component: LiveModelComponent}
 ];
 
 @NgModule({

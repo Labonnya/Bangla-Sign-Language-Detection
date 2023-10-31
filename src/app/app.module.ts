@@ -27,6 +27,7 @@ import { InvalidCredentialsComponent } from './login/invalid-credentials/invalid
 import { QuestionsComponent } from './questions/questions.component';
 import { AnswersComponent } from './answers/answers.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LiveModelComponent } from './live-model/live-model.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     InvalidCredentialsComponent,
     QuestionsComponent,
     AnswersComponent,
-    NavbarComponent
+    NavbarComponent,
+    LiveModelComponent
   ],
   imports: [
     BrowserModule,

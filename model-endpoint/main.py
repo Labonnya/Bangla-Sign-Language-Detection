@@ -1,8 +1,24 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request;
+from urllib.parse import unquote
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import Optional
+from fastapi.responses import JSONResponse
+
 from trained_model.sign_recognition import predict_sign
 from trained_model.video_similarity import calculate_video_similarity
 from trained_model.sign_similarity import calculate_image_sign_similarity
+
+CAMERA_URL = "-1"
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Update this with the origins that should be allowed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class VideoSimilarityRequest(BaseModel):
     tutorial_uri: str
@@ -18,11 +34,17 @@ class SignRecognitionRequest(BaseModel):
     sign_image_uri: str
     selected_model_name: str
 
-app = FastAPI()
+class SetCameraURLRequest(BaseModel):
+    camera_url: str
 
 @app.get("/", response_model=str)
 async def root_requests():
     return "FastAPI Server is running."
+
+@app.post("/api/v1/camera/set", response_model=str)
+async def set_camera(camera: SetCameraURLRequest):
+    CAMERA_URL = camera.camera_url
+    return "Successfully set camera url"
 
 @app.post("/api/v1/video/similarity", response_model=float)
 async def video_similarity(videos : VideoSimilarityRequest):

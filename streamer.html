@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Video Stream</title>
+</head>
+<body>
+    <h1>Live Video Stream</h1>
+    <img id="videoStream" width="640" height="480">
+    <script>
+        const videoElement = document.getElementById('videoStream');
+
+        function updateVideoStream() {
+            videoElement.src = 'http://localhost:8000/'; // This is the root URL of your FastAPI application
+            setTimeout(updateVideoStream, 1000); // Update the image every 1 second
+        }
+
+        updateVideoStream();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+
+<div id="register-camera" class="container">
+    <input type="text" class="input" [(ngModel)]="camera_link">
+    <button class="button" (click)="set_camera_address()">Submit</button>
+</div>
+
+<div id="live-video">
+    <video width="320" height="240" controls autoplay="autoplay">
+        <p>{{camera_link}}</p>
+        <source (src)="{camera_link}" type="video/mp4">
+      Your browser does not support the video tag.
+      </video> 
+</div>
+
+<img src="../../assets/sign_detected_image.png" alt="cant find image">

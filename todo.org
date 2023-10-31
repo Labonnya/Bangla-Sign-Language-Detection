@@ -1,0 +1,10 @@
+- [X] Register camera to backend
+- [ ] Capture image to calculate sign similarity
+- [ ] Capture video to calculate video similarity
+- [ ] Sign recognition using sign similarity
+- [ ] Live sign recognition by putting signs into a folder and showing them / by streaming them
+
+* Contingency Plan
+https://codepen.io/dalalRohit/pen/XWXEEPE
+
+My PC don't have webcam and I could also not find any runnable streaming html code.

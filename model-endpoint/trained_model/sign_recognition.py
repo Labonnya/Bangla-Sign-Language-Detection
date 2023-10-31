@@ -5,8 +5,8 @@ import math
 from cvzone.HandTrackingModule import HandDetector
 import numpy as np
 
-VIDEO_STREAM_LINK = 'http://192.168.0.104:4747/video'
-classifier = Classifier("trained_model/keras_model.h5", "trained_model/labels.txt")
+VIDEO_STREAM_LINK = 'http://192.168.0.100:4747/video'
+classifier = Classifier("keras_model.h5", "labels.txt")
 CLASSES = [
     "Chandra Bindu",
     "Anusshar",
@@ -101,6 +101,8 @@ def test():
             cv2.putText(frame_copy, f"{CLASSES[index]}, {prediction[index]}", (x, y-20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255), 1)
             cv2.rectangle(frame_copy, (x,y), (x+w, y+h), (255,0,255), 2)
             cv2.imshow(f"Sign Detected", frame_copy)
-
+            cv2.imwrite("../../src/assets/sign_detected_image.png", frame_copy)
+            
         if cv2.waitKey(1) == ord('q'):
             break
+test()
