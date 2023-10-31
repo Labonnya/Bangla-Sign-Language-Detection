@@ -8,8 +8,23 @@ import { Component } from '@angular/core';
 })
 export class LiveModelComponent {
   camera_link: string = "http://192.168.0.100:4747/";
+  videoUrl: string;
 
-  constructor(private httpClient : HttpClient){}
+
+  constructor(private httpClient : HttpClient){
+    this.videoUrl = 'http://localhost:8000/'; // Replace with the actual URL
+  }
+
+
+  ngOnInit(): void {
+    this.updateVideoStream();
+  }
+
+  updateVideoStream() {
+    const videoElement = document.getElementById('videoStream') as HTMLImageElement;
+    videoElement.src = this.videoUrl;
+    setTimeout(() => this.updateVideoStream(), 1000); // Update the image every 1 second
+  }
 
   set_camera_address(){
     const data = {
@@ -20,6 +35,4 @@ export class LiveModelComponent {
       console.log(response);
     });
   }
-
-  
 }
