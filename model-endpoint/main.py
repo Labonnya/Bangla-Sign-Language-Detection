@@ -8,7 +8,7 @@ from fastapi.responses import StreamingResponse
 import cv2
 import threading
 from cvzone.ClassificationModule import Classifier
-
+import datetime
 #from trained_model.sign_recognition import predict_sign
 from trained_model.video_similarity import calculate_video_similarity
 from trained_model.sign_similarity import calculate_image_sign_similarity
@@ -40,6 +40,8 @@ class SetCameraURLRequest(BaseModel):
     camera_url: str
 
 frame_skip = 10
+recording = False
+video_file_name = "default.mp4"
 VIDEO_STREAM_LINK = 'http://192.168.0.100:4747/video' # You can specify your camera index or video source
 camera = cv2.VideoCapture(VIDEO_STREAM_LINK)  
 classifier = Classifier("trained_model/keras_model.h5", "trained_model/labels.txt")
@@ -81,17 +83,27 @@ def generate_frames():
     frame_number = 0
     prediction = [0]
     index = 0
+    out = None
+
+    if recording:
+        out = cv2.VideoWriter(video_file_name, cv2.VideoWriter_fourcc('m', 'p', '4', 'v') , 20.0, (640,480))
+
     while True:
         success, frame = camera.read()
         if not success: 
             print(f"Failed to read frame from video stream {VIDEO_STREAM_LINK}")
             break
-        frame_number+=1
+        frame_number += 1
 
         if frame_number % frame_skip == 0:
             prediction, index = classifier.getPrediction(frame)
-        else: 
+        else:
             cv2.putText(frame, f"{CLASSES[index]}, {prediction[index]}", (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255), 1)
+
+        if recording:    
+            out.write(cv2.resize(frame, (640, 480)))
+        elif out:
+            out.release()
 
         ret, buffer = cv2.imencode('.jpg', frame)
         if not ret:
@@ -99,12 +111,24 @@ def generate_frames():
         frame = buffer.tobytes()
         yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-            
 
 @app.get("/")
 async def read_root(request: Request):
     return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
 
+@app.get("/api/v1/camera/start_recording")
+async def start_recording():
+    global video_file_name
+    global recording
+    video_file_name = "data/"+str(datetime.datetime.now())+".mp4"
+    recording = True
+    return {"message": "Recording started"}
+
+@app.get("/api/v1/camera/stop_recording")
+async def stop_recording():
+    global recording
+    recording = False
+    return {"message": "Recording stopped", "video_url":video_file_name}
 
 @app.post("/api/v1/camera/set", response_model=str)
 async def set_camera(camera: SetCameraURLRequest):
