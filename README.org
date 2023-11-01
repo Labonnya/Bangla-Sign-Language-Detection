@@ -1,0 +1,66 @@
+* Sign Language Learning Platform
+** Features
+- [ ] Teachers can register and upload tutorials
+- [ ] Teachers can prepare modules
+- [ ] Students can view modules
+- [ ] Students can do quiz on Sign Language Recognition
+- [ ] We have added a ~sign-mimicking-evaluation~ model. Using it, students can understand how well they are mimicking.
+- [ ] We have added a ~sign recognition model~ for ~LIVE~ sign recognition
+
+** Bugs
+- [ ] In live sign recognition, a green glitch occurs every skip frame. It may be due to some race condition.
+- [ ] In video similarity, it sometimes throw errors. We need to find out why. Simply restarting the server solves it, for now.
+- [ ] Frontend bug - I can't play videos - tutorial, recorded video.
+
+* Releases
+
+** Release v0.1.8 - Model Integration
+The models can be run using:
+#+begin_src bash
+cd model-endpoint
+python3 venv -m bslModelEnv
+pip install -r requirements.py
+uvicorn main:app --port 8086 --reload
+#+end_src
+
+Now the models are running at port 8086. The frontend interacts with the model in three small steps. Note that, the frontend for this part is entirely in the ~Live-Model~ component in angular, which runs in ~localhost:4200/model~ route.
+** Setting Camera URL
+You need to set the camera URL first. The url can be :
+- Droid Cam: Those who don't have a webcam, can connect the video of their mobile phone as a camera. Just install droid cam and insert the url of the camera stream.
+- Webcam: For webcam, the address should be a number, [[https://stackoverflow.com/questions/2601194/displaying-a-webcam-feed-using-opencv-and-python][usuall 0]]. So simply insert 0 in the set-camera-url setting.
+[[./resources/set-camera-url.png]]
+
+This sets the variable VIDEO_STREAM_URL in the backend ~main.py~. So if the api call to set the camera is not working, you might want to check this variable.
+
+** Live Sign Recognition
+Backend now directly captures the video stream and performs sign recognition on it and streams the output in root endpoint.
+#+begin_src python
+@app.get("/")
+async def read_root(request: Request):
+    return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
+#+end_src
+
+So our frontend sends a request to this endpoint every 1000ms and updates the img:src through which it shows the video stream.
+#+begin_src javascript
+  <h1>Live Video Stream</h1>
+  <img id="videoStream" width="640" height="480">
+  <script>
+    const videoElement = document.getElementById('videoStream');
+
+    function updateVideoStream() {
+        videoElement.src = 'http://localhost:8086/'; // This is the root URL of your FastAPI application
+        setTimeout(updateVideoStream, 1000); // Update the image every 1 second
+    }
+
+    updateVideoStream();
+  </script>
+#+end_src
+
+** Video Recording and Evaluation
+First, we need to record a video of us doing the sign.
+- ~Start Recording:~ It sends a request to the backend to start recording. The backend now saves all frames in a video file.
+- ~Stop Recording:~ Backend stops saving frames and saves the video in ~model-endpoint/data~ folder. The video name is the current timestamp. The video address is returned to frontend and printed in the frontend.
+
+Next, the video similarity button is clicked. It sends a request to backend with the address of the tutorial and the currently recorded video. Note that, we have hardcoded the tutorial address in our live-model.component.ts file as ~data/Faridpur_7.mp4~. If you check the video, you can see the sign language used to show ~Faridpur~.
+
+Back to our point, when we click the video similarity button, it sends the url of tutorial and recorded video to backend. The backend returns their similarity score after some time. This step takes a bit of time and it currently has bug no 2, mentioned above.
