@@ -1,13 +1,16 @@
 * Sign Language Learning Platform
 ** Features
-- [ ] Teachers can register and upload tutorials
-- [ ] Teachers can prepare modules
-- [ ] Students can view modules
-- [ ] Students can do quiz on Sign Language Recognition
-- [ ] We have added a ~sign-mimicking-evaluation~ model. Using it, students can understand how well they are mimicking.
-- [ ] We have added a ~sign recognition model~ for ~LIVE~ sign recognition
+- [X] Teachers can register and upload tutorials
+- [X] Teachers can prepare modules
+- [X] Students can view modules
+- [X] Students can do quiz on Sign Language Recognition
+- [X] We have added a ~sign-mimicking-evaluation~ model. Using it, students can understand how well they are mimicking.
+- [X] We have added a ~sign recognition model~ for ~LIVE~ sign recognition
+- [ ] Bug fixing
+- [ ] Train more accurate model
 
 ** Bugs
+All the bugs are yet to be resolved.
 - [ ] In live sign recognition, a green glitch occurs every skip frame. It may be due to some race condition.
 - [ ] In video similarity, it sometimes throw errors. We need to find out why. Simply restarting the server solves it, for now.
 - [ ] Frontend bug - I can't play videos - tutorial, recorded video.
