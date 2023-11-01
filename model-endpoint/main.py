@@ -4,14 +4,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 from fastapi.responses import JSONResponse
+from fastapi.responses import StreamingResponse
+import cv2
+import threading
+from cvzone.ClassificationModule import Classifier
 
-from trained_model.sign_recognition import predict_sign
+#from trained_model.sign_recognition import predict_sign
 from trained_model.video_similarity import calculate_video_similarity
 from trained_model.sign_similarity import calculate_image_sign_similarity
 
-CAMERA_URL = "-1"
 app = FastAPI()
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Update this with the origins that should be allowed
@@ -37,13 +39,76 @@ class SignRecognitionRequest(BaseModel):
 class SetCameraURLRequest(BaseModel):
     camera_url: str
 
-@app.get("/", response_model=str)
-async def root_requests():
-    return "FastAPI Server is running."
+frame_skip = 10
+VIDEO_STREAM_LINK = 'http://192.168.0.100:4747/video' # You can specify your camera index or video source
+camera = cv2.VideoCapture(VIDEO_STREAM_LINK)  
+classifier = Classifier("trained_model/keras_model.h5", "trained_model/labels.txt")
+CLASSES = [
+    "Chandra Bindu",
+    "Anusshar",
+    "Bisharga",
+    "Ka",
+    "Kha",
+    "Ga",
+    "Gha",
+    "Uo",
+    "Ca",
+    "Cha",
+    "Jha",
+    "Yo",
+    "Ta",
+    "Thha",
+    "Do",
+    "Dho",
+    "Tha",
+    "Da",
+    "Dha",
+    "Pa",
+    "fa",
+    "Ma",
+    "La",
+    "Ha",
+    "Borgio Ja/Anta Ja",
+    "Murdha Na/Donta Na",
+    "Ta/Khanda Ta",
+    "Ba/Bha",
+    "Ba-y Ra/Da-y Ra/Dha-y Ra",
+    "Talobbo sha/Danta sa/Murdha Sha"
+]
+
+
+def generate_frames():
+    frame_number = 0
+    prediction = [0]
+    index = 0
+    while True:
+        success, frame = camera.read()
+        if not success: 
+            print(f"Failed to read frame from video stream {VIDEO_STREAM_LINK}")
+            break
+        frame_number+=1
+
+        if frame_number % frame_skip == 0:
+            prediction, index = classifier.getPrediction(frame)
+        else: 
+            cv2.putText(frame, f"{CLASSES[index]}, {prediction[index]}", (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255), 1)
+
+        ret, buffer = cv2.imencode('.jpg', frame)
+        if not ret:
+            break
+        frame = buffer.tobytes()
+        yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+            
+
+@app.get("/")
+async def read_root(request: Request):
+    return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
+
 
 @app.post("/api/v1/camera/set", response_model=str)
 async def set_camera(camera: SetCameraURLRequest):
-    CAMERA_URL = camera.camera_url
+    VIDEO_STREAM_LINK = camera.camera_url
     return "Successfully set camera url"
 
 @app.post("/api/v1/video/similarity", response_model=float)

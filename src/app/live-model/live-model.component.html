@@ -4,15 +4,21 @@
     <button class="button" (click)="set_camera_address()">Submit</button>
 </div>
 
-<h1>Live Video Stream</h1>
-<img id="videoStream" width="640" height="480">
-<script>
-  const videoElement = document.getElementById('videoStream');
+<div id="live-sign-recognition"> 
+  <h1>Live Video Stream</h1>
+  <img id="videoStream" width="640" height="480">
+  <script>
+    const videoElement = document.getElementById('videoStream');
 
-  function updateVideoStream() {
-      videoElement.src = 'http://localhost:8000/'; // This is the root URL of your FastAPI application
-      setTimeout(updateVideoStream, 1000); // Update the image every 1 second
-  }
+    function updateVideoStream() {
+        videoElement.src = 'http://localhost:8000/'; // This is the root URL of your FastAPI application
+        setTimeout(updateVideoStream, 1000); // Update the image every 1 second
+    }
 
-  updateVideoStream();
-</script>
+    updateVideoStream();
+  </script>
+</div>
+
+<div class="Video-Similarity">
+  
+</div>

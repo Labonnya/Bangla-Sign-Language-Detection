@@ -3,6 +3,8 @@ from fastapi.responses import StreamingResponse
 import cv2
 import threading
 from cvzone.ClassificationModule import Classifier
+from trained_model.video_similarity import calculate_video_similarity
+from pydantic import BaseModel
 
 
 app = FastAPI()
@@ -43,6 +45,10 @@ CLASSES = [
     "Talobbo sha/Danta sa/Murdha Sha"
 ]
 
+class VideoSimilarityRequest(BaseModel):
+    tutorial_uri: str
+    performance_video_uri: str
+    selected_model_name: str 
 
 def generate_frames():
     frame_number = 0
@@ -72,6 +78,10 @@ def generate_frames():
 @app.get("/")
 async def read_root(request: Request):
     return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
+
+@app.post("/api/v1/video/similarity", response_model=float)
+async def video_similarity(videos : VideoSimilarityRequest):
+    return calculate_video_similarity(videos.tutorial_uri, videos.performance_video_uri)
 
 if __name__ == "__main__":
     import uvicorn
