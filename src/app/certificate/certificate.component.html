@@ -1,0 +1,6 @@
+<h2>Certificates</h2>
+<ul>
+  <li *ngFor="let certificate of certificates">
+    <p>{{ certificate.studentName }} has successfully completed {{ getCourseTitle(certificate.courseId) }} on {{ certificate.issueDate | date: 'short' }}</p>
+  </li>
+</ul>

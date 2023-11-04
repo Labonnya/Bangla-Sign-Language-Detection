@@ -1,0 +1,8 @@
+<p>course-list works!</p>
+<h2>Available Courses</h2>
+<ul>
+  <li *ngFor="let course of courses">
+    <span>{{ course.title }}</span>
+    <button (click)="enroll(course.id)">Enroll</button>
+  </li>
+</ul>

@@ -28,7 +28,13 @@ import { QuestionsComponent } from './questions/questions.component';
 import { AnswersComponent } from './answers/answers.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LiveModelComponent } from './live-model/live-model.component';
-
+import { RoleManagementComponent } from './role-management/role-management.component';
+import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+import { CertificateComponent } from './certificate/certificate.component';
+import { CourseDataService } from './services/course-data-service.service';
+import { CourseListComponent } from './course-list/course-list.component';
+// import { CourseListComponent } from './course-list/course-list.component';
+import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +57,13 @@ import { LiveModelComponent } from './live-model/live-model.component';
     QuestionsComponent,
     AnswersComponent,
     NavbarComponent,
-    LiveModelComponent
+    LiveModelComponent,
+    RoleManagementComponent,
+    StudentDashboardComponent,
+    CertificateComponent,
+    // CourseListsComponent,
+    CourseListComponent,
+    EnrollCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +72,7 @@ import { LiveModelComponent } from './live-model/live-model.component';
     HttpClientModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [CourseDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

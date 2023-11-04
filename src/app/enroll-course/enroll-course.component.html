@@ -1,0 +1,6 @@
+<h2>Enroll in a Course</h2>
+<form (submit)="enrollCourse()">
+  <label for="studentName">Student Name: </label>
+  <input type="text" id="studentName" [(ngModel)]="studentName" name="studentName" required />
+  <button type="submit">Enroll</button>
+</form>
