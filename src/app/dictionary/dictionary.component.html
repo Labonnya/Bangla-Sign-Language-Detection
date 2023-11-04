@@ -1,26 +1,26 @@
-<!-- src/app/dictionary/dictionary.component.html -->
 <app-navbar></app-navbar>
 <div class="container mt-4">
-    <div class="card mt-4" style="width: 82rem; margin: 0 auto;">
-      <img class="card-img-top" src="../../assets/heading-2.png" alt="Dictionary Logo" style="width: 100px; height: 100px;" id="logo">
-      <div class="card-body">
-        <h1 class="card-title text-center" style="font-family: 'Cursive', cursive; font-size: 24px;">Dictionary</h1>
-        <p class="card-text text-center" style="font-size: 14px;">For Sign Language</p>
-        <div class="d-flex flex-column align-items-center">
-          <div *ngFor="let entry of dictionaryEntries" class="mb-2">
-            <button class="btn btn-custom btn-sm m-2" style="font-size: 18px;" (click)="showMeaning(entry.word)">
-              {{ entry.word }} 
-            </button>
-            <button class="btn btn-sm m-2 " style="border: 1px solid #9a1750; " (click)="showMeaning(entry.word)">
-                <i class="fa fa-play-circle" style="font-size: 14px; "></i>
-              </button>
-            <div class="meaning-box">
-              <strong>{{ entry.word }}:</strong>
-              <span>{{ entry.meaning }}</span>
-            </div>
+  <div class="card mt-4" style="width: 82rem; margin: 0 auto;">
+    <img class="card-img-top" src="../../assets/heading-2.png" alt="Dictionary Logo" style="width: 100px; height: 100px;" id="logo">
+    <div class="card-body">
+      <h1 class="card-title text-center" style="font-family: 'Cursive', cursive; font-size: 24px;">Dictionary</h1>
+      <p class="card-text text-center" style="font-size: 14px;">For Sign Language</p>
+      <div class="d-flex flex-column align-items-center">
+        <div *ngFor="let entry of dictionaryEntries" class="mb-2">
+          <button class="btn btn-custom btn-sm m-2" style="font-size: 18px;" (click)="showMeaning(entry.word)">
+            {{ entry.word }}
+          </button>
+          <button class="btn btn-sm m-2" style="border: 1px solid #9a1750;" (click)="showMeaning(entry.word)">
+            <i class="fa fa-play-circle" style="font-size: 14px;"></i>
+          </button>
+          <div class="meaning-box">
+            <strong>{{ entry.word }}:</strong>
+            <img [src]="entry.meaning" alt="{{ entry.word }} meaning" style="max-width: 100%; height: auto;">
           </div>
+          
+          
         </div>
       </div>
     </div>
   </div>
-  
+</div>

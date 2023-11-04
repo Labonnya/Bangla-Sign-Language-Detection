@@ -1,5 +1,5 @@
-// src/app/dictionary/dictionary.component.ts
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dictionary',
@@ -7,18 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./dictionary.component.css'],
 })
 export class DictionaryComponent {
-  dictionaryEntries = [
-    { word: 'অন্ধকার', meaning: 'Dark' },
-    { word: 'অপারেশন', meaning: 'Operation' },
-    { word: 'অবাধ্য', meaning: 'Disobidient' },
-    { word: 'অভিনয়', meaning: 'Acting' },
-    { word: 'অভিধান', meaning: 'Dictionary' },
-    { word: 'অলস', meaning: 'Lazy' },
-    { word: 'অশিক্ষিত', meaning: 'Illiterate' },
-    { word: 'অসুবিধা', meaning: 'Unfavourable' },
-    // { word: 'আইন', meaning: 'Law' },
-    
+  constructor(private router: Router) {}
 
+  dictionaryEntries = [
+    { word: 'অন্ধকার', meaning: 'dark' },
+    { word: 'অপারেশন', meaning: 'operation' },
+    { word: 'অবাধ্য', meaning: 'disobedient' },
+    { word: 'অলস', meaning: 'lazy' },
+    { word: 'অশিক্ষিত', meaning: 'illiterate' },
+    { word: 'অসুবিধা', meaning: 'unfavour' },
     // Add more entries as needed
   ];
 
@@ -34,12 +31,13 @@ export class DictionaryComponent {
   }
 
   getMeaning(word: string): string {
-    // You can implement logic to fetch the meaning based on the selected word here.
-    // For simplicity, we use the predefined data in dictionaryEntries.
+    // Use the predefined data to construct the image path from the "resources" folder
     const entry = this.dictionaryEntries.find((entry) => entry.word === word);
-    return entry ? entry.meaning : '';
+    return entry ? `../../resources/${entry.meaning}.jpg` : '';
   }
+  
+
   showMeaning(word: string) {
-    this.selectedWord = word;
+    this.router.navigate(['/word-detail', word]);
   }
 }

@@ -1,0 +1,18 @@
+<!-- <p>word-detail works!</p> -->
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <div class="card mt-4" style="width: 82rem; margin: 0 auto;">
+    <img class="card-img-top" src="../../assets/heading-2.png" alt="Dictionary Logo" style="width: 100px; height: 100px;" id="logo">
+    <div class="card-body">
+      <h1 class="card-title text-center" style="font-family: 'Cursive', cursive; font-size: 24px;">Dictionary</h1>
+      <p class="card-text text-center" style="font-size: 14px;">For Sign Language</p>
+      <div class="d-flex flex-column align-items-center">
+        <div>
+          <strong>{{ selectedWord }}:</strong>
+          <!-- Display the corresponding image here -->
+          <img [src]="getMeaning(selectedWord)" alt="{{ selectedWord }} meaning" style="max-width: 100%; height: auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

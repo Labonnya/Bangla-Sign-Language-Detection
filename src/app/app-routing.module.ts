@@ -22,6 +22,7 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { CourseListComponent } from './course-list/course-list.component';
 import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
 import { DictionaryComponent } from './dictionary/dictionary.component';
+import { WordDetailComponent } from './word-detail/word-detail.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -44,7 +45,9 @@ const routes: Routes = [
   {path : "student-dashboard", component: StudentDashboardComponent},
   { path: 'courses', component: CourseListComponent },
   { path: 'enroll/:id', component: EnrollCourseComponent },
-  { path: 'dictionary', component: DictionaryComponent }
+  { path: 'dictionary', component: DictionaryComponent },
+  { path: 'word-detail/:word', component: WordDetailComponent }, // Define the route for WordDetailComponent
+
 ];
 
 @NgModule({
