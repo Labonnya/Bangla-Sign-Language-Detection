@@ -21,6 +21,7 @@ import { LiveModelComponent } from './live-model/live-model.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
+import { DictionaryComponent } from './dictionary/dictionary.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path : "student-dashboard", component: StudentDashboardComponent},
   { path: 'courses', component: CourseListComponent },
   { path: 'enroll/:id', component: EnrollCourseComponent },
+  { path: 'dictionary', component: DictionaryComponent }
 ];
 
 @NgModule({

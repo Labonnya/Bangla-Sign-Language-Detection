@@ -35,6 +35,7 @@ import { CourseDataService } from './services/course-data-service.service';
 import { CourseListComponent } from './course-list/course-list.component';
 // import { CourseListComponent } from './course-list/course-list.component';
 import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
+import { DictionaryComponent } from './dictionary/dictionary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
     CertificateComponent,
     // CourseListsComponent,
     CourseListComponent,
-    EnrollCourseComponent
+    EnrollCourseComponent,
+    DictionaryComponent
   ],
   imports: [
     BrowserModule,

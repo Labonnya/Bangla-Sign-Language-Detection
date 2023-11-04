@@ -7,7 +7,7 @@
     </div>
     <div class="col-6">
       <div class="container register">
-        <div class="panel panel-default">
+        <div class="panel panel-default login-box"> <!-- Add 'login-box' class to make it similar to the login component -->
           <div class="panel-heading">
             <h2>Registration</h2>
           </div>
@@ -59,7 +59,7 @@
                 </div>
               </div>
               
-              <button class="btn-reg" id="btnReg"(click)="registerUser()">Register</button>
+              <button class="btn-reg" id="btnReg" (click)="registerUser()">Register</button>
             </form>
           </div>
         </div>
@@ -68,6 +68,8 @@
     <div class="col-3">
       <img src="../../assets/Light Grey Simple Illustrated International Day Of Sign Language Instagram Story.gif" alt="girl">
     </div>
-  </div>  
+  </div>
 </div>
+
 <app-otp-verification *ngIf="OTPSent==true"></app-otp-verification>
+<!-- <app-navbar></app-navbar> -->

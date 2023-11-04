@@ -1,0 +1,92 @@
+.accordion {
+    width: 300px;
+}
+
+.alert {
+    background-color: #f1a8b5;
+    color: #9a1750;
+}
+
+.offcanvas-title {
+    color: #9a1750;
+}
+
+.card {
+    background: #9a1750;
+    background-image: -webkit-linear-gradient(top, #9a1750, #ee4c7c);
+    background-image: -moz-linear-gradient(top, #9a1750, #ee4c7c);
+    background-image: -ms-linear-gradient(top, #9a1750, #ee4c7c);
+    background-image: -o-linear-gradient(top, #9a1750, #ee4c7c);
+    background-image: linear-gradient(to bottom, #9a1750, #ee4c7c);    
+    color: #252323;
+    -webkit-border-radius: 14;
+    -moz-border-radius: 14;
+    border-radius: 14px;
+}
+
+.card-body {
+    background-color: white;
+}
+
+.btn-link {
+    color: white;
+    font-weight: 600;
+    text-decoration: none!important;
+}
+
+.btn-link:active {
+    color: white!important;
+}
+  
+  .btn-icon .icon {
+    font-size: 60px; /* adjust the size as needed */
+    margin: auto; /* adjust the spacing between the text and the icon as needed */
+  }
+  
+  .container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  h1, h3 {
+    color: #9A1750;
+  }
+  
+img{
+    width: 600px;
+    height: 753px;
+    margin-left: 28px;
+}
+
+#head {
+    width: 200px;
+    height: auto;
+}
+
+.startsub {
+    color: #A6A2A2;
+}
+
+.typing {
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px;
+}
+
+/* src/app/dictionary/dictionary.component.css */
+.meaning-box {
+    border: 1px solid #9a1750; /* Add border to meaning box */
+    padding: 5px; /* Add padding to meaning box */
+    display: inline-flex; /* Put the button and meaning in the same line */
+    align-items: center; /* Vertically center the content */
+    border-radius: 14px;
+  }
+  
+  .btn-custom {
+    background-color: transparent; /* Remove button background color */
+    border: 1px solid #343a40; /* Add border to the button */
+    padding: 0.25rem 0.5rem; /* Reduce button padding */
+    margin-right: 10px; /* Reduce spacing between buttons */
+  }
+  
