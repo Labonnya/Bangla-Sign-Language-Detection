@@ -37,6 +37,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
 import { DictionaryComponent } from './dictionary/dictionary.component';
 import { WordDetailComponent } from './word-detail/word-detail.component';
+import { TestingComponent } from './testing/testing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,8 @@ import { WordDetailComponent } from './word-detail/word-detail.component';
     CourseListComponent,
     EnrollCourseComponent,
     DictionaryComponent,
-    WordDetailComponent
+    WordDetailComponent,
+    TestingComponent
   ],
   imports: [
     BrowserModule,

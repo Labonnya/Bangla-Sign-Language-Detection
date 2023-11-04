@@ -19,13 +19,24 @@ export class WordDetailComponent implements OnInit {
     });
   }
 
+  getImagePath() : string{
+    // return `../../assets/${this.getMeaning(this.selectedWord)}.png`;
+    if(this.selectedWord === 'অন্ধকার'){
+      return `../../assets/dark.png`;
+    }
+    else if(this.selectedWord === 'অপারেশন'){
+      return `../../assets/operation.png`;
+    }
+    return ``;
+  }
+
   // Implement the logic to fetch the image URL based on the selected word
   getMeaning(word: string): string {
     // You can fetch the image URL from a resource or database here.
     // For simplicity, you can use a predefined mapping of word to image URL.
     const imageMapping: Record<string, string> = {
-      'অন্ধকার': 'dark.jpg',
-      'অপারেশন': 'operation.jpg',
+      'অন্ধকার': '../../assets/dark.png',
+      'অপারেশন': '../../assets/operation.png',
       // Add more entries as needed
     };
     return imageMapping[word] || ''; // Return the image URL if found, or an empty string

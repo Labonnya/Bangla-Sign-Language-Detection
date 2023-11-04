@@ -33,7 +33,7 @@ export class DictionaryComponent {
   getMeaning(word: string): string {
     // Use the predefined data to construct the image path from the "resources" folder
     const entry = this.dictionaryEntries.find((entry) => entry.word === word);
-    return entry ? `../../resources/${entry.meaning}.jpg` : '';
+    return entry ? `../../assets/${entry.meaning}.png` : '';
   }
   
 
