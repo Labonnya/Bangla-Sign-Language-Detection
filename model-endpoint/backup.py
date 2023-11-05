@@ -51,21 +51,27 @@ classifier = tf.keras.models.load_model("trained_model/image_based_sign_recognit
 CLASSES = [
    "Hasha", "Hospital","Oshustho", "Oushodh", "Telephone"
 ]
+
 def generate_frames():
     frame_number = 0
     predictions = [[0]]
     index = 0
     out = None
 
-    if recording:
-        out = cv2.VideoWriter(video_file_name, cv2.VideoWriter_fourcc('m', 'p', '4', 'v') , 20.0, (640,480))
-
+            
     while True:
         success, frame = camera.read()
         if not success: 
             print(f"Failed to read frame from video stream {VIDEO_STREAM_LINK}")
             break
         frame_number += 1
+
+        if recording:
+            # Initialize the VideoWriter if it's None or the video file name has changed
+            if out is None or video_file_name != out.getVideoFileWriter():
+                if out is not None:
+                    out.release()
+                out = cv2.VideoWriter(video_file_name)
 
         if frame_number % frame_skip == 0:
             image = cv2.resize(frame, (128, 128))
@@ -79,10 +85,9 @@ def generate_frames():
                 cv2.putText(frame, f"{CLASSES[index]}, {predictions[0][index]}", (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255), 1)
             else: 
                 cv2.putText(frame, f"No known sign , {100-predictions[0][index]}", (50, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255), 1)
-        if recording:    
+
+        if recording and out is not None:    
             out.write(cv2.resize(frame, (640, 480)))
-        elif out:
-            out.release()
 
         ret, buffer = cv2.imencode('.jpg', frame)
         if not ret:
@@ -90,6 +95,7 @@ def generate_frames():
         frame = buffer.tobytes()
         yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
 
 @app.get("/")
 async def read_root(request: Request):
@@ -114,8 +120,16 @@ async def set_camera(camera: SetCameraURLRequest):
     VIDEO_STREAM_LINK = camera.camera_url
     return "Successfully set camera url"
 
+@app.post("/api/v1/model/set", response_model=str)
+async def set_model(model_name: SetModelRequest):
+    if model_name.model_code=="5WordModel":
+        classifier = tf.keras.models.load_model("trained_model/image_based_sign_recognition_on_5word_dataset.h5")
+
+    return "Successfully set Model"
+
 @app.post("/api/v1/video/similarity", response_model=float)
 async def video_similarity(videos : VideoSimilarityRequest):
+    print(str(videos))
     return calculate_video_similarity(videos.tutorial_uri, videos.performance_video_uri)
 
 @app.post("/api/v1/image/recognize/sign", response_model=str)

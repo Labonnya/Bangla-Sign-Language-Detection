@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class VideoSimilarityComponent {
   status: string = "";
   recorded_video_url: string = "";
-  tutorial_video_url: string = "";
+  tutorial_video_url: string = "data/Faridpur_7.mp4";
   video_similarity_score: string = "";
 
   constructor(private httpClient: HttpClient){}
