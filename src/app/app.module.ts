@@ -38,6 +38,10 @@ import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
 import { DictionaryComponent } from './dictionary/dictionary.component';
 import { WordDetailComponent } from './word-detail/word-detail.component';
 import { TestingComponent } from './testing/testing.component';
+import { RegisterCameraModelComponent } from './live-model/register-camera-model/register-camera-model.component';
+import { LiveSignRecognitionComponent } from './live-model/live-sign-recognition/live-sign-recognition.component';
+import { PracticeMimickingWithTutorialsComponent } from './live-model/practice-mimicking-with-tutorials/practice-mimicking-with-tutorials.component';
+import { VideoSimilarityComponent } from './live-model/video-similarity/video-similarity.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +73,11 @@ import { TestingComponent } from './testing/testing.component';
     EnrollCourseComponent,
     DictionaryComponent,
     WordDetailComponent,
-    TestingComponent
+    TestingComponent,
+    RegisterCameraModelComponent,
+    LiveSignRecognitionComponent,
+    PracticeMimickingWithTutorialsComponent,
+    VideoSimilarityComponent
   ],
   imports: [
     BrowserModule,

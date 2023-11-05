@@ -1,0 +1,21 @@
+
+<div class="Video-Similarity">
+    <p>{{status}}</p>
+    <button (click)="start_recording()">Start Recording</button>
+    <button (click)="stop_recording()">Stop Recording</button>
+  
+    <p>{{tutorial_video_url}}</p>
+    <video controls width="640" height="480">
+      <source src="file:///home/abhijit/Feature-Based-Video-Similarity-Detection/data-collection-and-training-area/data/Faridpur_7.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+  </video>
+  
+    <p>{{recorded_video_url}}</p>
+    <video width="320" height="240">
+      <source (src)="{recorded_video_url}" type="video/mp4">
+    Your browser does not support the video tag.
+    </video> 
+  
+    <button (click)="calculate_video_similarity()">Calculate Video Similairty</button>
+    <p>{{video_similarity_score}}</p>
+  </div>

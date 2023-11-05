@@ -1,0 +1,12 @@
+
+<div id="register-camera" class="container">
+    <input type="text" class="input" [(ngModel)]="camera_link">
+    <button class="button" (click)="set_camera_address()">Submit</button>
+</div>
+
+<div id="set-model" class="container">
+  <select [(ngModel)]="selected_model">
+    <option *ngFor="let model of models" [ngValue]="model.name">{{model.name}}</option>
+  </select>
+  <button class="button" (click)="set_model_for_sign_recognition()">Submit</button>
+</div>

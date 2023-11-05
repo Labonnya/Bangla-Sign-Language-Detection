@@ -1,6 +1,4 @@
 *videoSimilarityEnv*
-data/
-*.mp4
 *pycache*
 *.h5
 *apiBSLEnv*
@@ -8,3 +6,4 @@ data/
 *.angular*
 *node_module*
 *__pycache__*
+*backendBSLEnv*
